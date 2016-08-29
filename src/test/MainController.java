@@ -15,7 +15,7 @@ public class MainController {
 		HDFSConnector hdfs = new HDFSConnector(parser);
 		hdfs.uploadFileToHdfs();
 		
-		//
+		// testing 
 		
 	}
 
