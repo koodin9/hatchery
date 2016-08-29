@@ -53,6 +53,7 @@ public class HDFSConnector {
         	/*}else{
 	        	outBufferedStream.write(buffer, firstRowLen, len - firstRowLen);
         		useFirstRow = true;
+        		hi
         	}*/
         }
         inBufferedStream.close();
