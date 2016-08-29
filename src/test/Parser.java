@@ -1,34 +1,52 @@
-package test;
-
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Parser {
 	
 	private String localPath;
-	private ArrayList<DataTypeWrapper> dataTypes;
-	private boolean isUseFirstRow;
-	Scanner scanner = new Scanner(System.in);
+	private boolean useFirstRow;
+	int lineCount, i;
+	String fileType, answer;
+	BufferedReader bufferedReader;
 	
-
+	public boolean setUseFirstRow(String ans){
+		if(ans.equals("yes")){
+			useFirstRow = true;
+			return true;
+		}else if(ans.equals("no")){
+			useFirstRow = false;
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public boolean setLocalPath (String localPath){
+		try{
+			this.localPath = localPath;
+			bufferedReader = new BufferedReader(new FileReader(localPath));
+			return true;
+		}catch(FileNotFoundException fnfe){
+			return false;
+		}
+	}
 	public String getLocalPath(){
 		return localPath;
-		
 	}
-	public void getLocalPathFromUser(){ //로컬 받는거
-		//여기 확장자 가져와서 어떤 파일 포맷인지 설정해주는 것도 필요
-		localPath = scanner.next();
+	public void previewRows(int rowCount) throws IOException{
+		String line;
+		i = 1;
+		try {
+			while((line = bufferedReader.readLine())!= null && i <= lineCount){
+				System.out.println("[Row"+i+"]"+line);
+				i ++;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		bufferedReader.close();
 	}
-	public void getLineOptionFromUser(){ //1. 첫번째줄 쓸꺼야?
-		isUseFirstRow = true;
-	}
-	
-	public void getDataTypeFromUser(){
-		//,,,,,
-		dataType = fds;
-	}
-	
-	public String getTypeString(){
-		return 
-	}
+
 }
